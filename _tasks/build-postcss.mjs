@@ -13,7 +13,9 @@ const buildCSS = async (filePath) => {
   }
 
   const css = await fs.readFile(filePath, 'utf8');
-  const result = await postcss(postcssConfig.plugins).process(css, { from: filePath });
+  const result = await postcss(postcssConfig.plugins).process(css, {
+    from: filePath,
+  });
 
   const outputFilePath = path.join(destDir, path.relative(srcDir, filePath));
   await fs.ensureDir(path.dirname(outputFilePath));
@@ -68,7 +70,10 @@ const watchFiles = () => {
     .on('add', buildCSS)
     .on('change', buildCSS)
     .on('unlink', async (filePath) => {
-      const outputFilePath = path.join(destDir, path.relative(srcDir, filePath));
+      const outputFilePath = path.join(
+        destDir,
+        path.relative(srcDir, filePath),
+      );
       await fs.remove(outputFilePath);
     });
 

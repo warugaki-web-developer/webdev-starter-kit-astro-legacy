@@ -52,8 +52,8 @@ h6 {
 button,
 select {
   -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   cursor: pointer;
   background-color: transparent;
   border: none;
@@ -124,8 +124,8 @@ table {
   color: #ccc;
 }
 .helper-text > small {
-    font-size: inherit;
-  }
+  font-size: inherit;
+}
 /* align */
 .t-a-l {
   text-align: left !important;

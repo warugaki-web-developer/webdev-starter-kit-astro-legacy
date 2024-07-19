@@ -94,7 +94,10 @@ export default [
           ],
         },
       ],
-      '@html-eslint/no-extra-spacing-attrs': ['error', { disallowMissing: true, enforceBeforeSelfClose: true }],
+      '@html-eslint/no-extra-spacing-attrs': [
+        'error',
+        { disallowMissing: true, enforceBeforeSelfClose: true },
+      ],
     },
   },
   {

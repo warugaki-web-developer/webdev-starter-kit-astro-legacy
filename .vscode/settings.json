@@ -14,7 +14,7 @@
     "*.jsonc": "jsonc"
   },
   "[astro]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -41,10 +41,10 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[markdown]": {
     "editor.defaultFormatter": "vscode.markdown-language-features",
@@ -63,26 +63,10 @@
   /* ----- Stylelint  */
   "css.validate": false,
   "scss.validate": false,
-  "stylelint.validate": [
-    "css",
-    "less",
-    "postcss",
-    "scss",
-    "vue",
-    "astro"
-  ],
-  "stylelint.snippet": [
-    "css",
-    "less",
-    "postcss",
-    "scss",
-    "vue",
-    "astro"
-  ],
+  "stylelint.validate": ["css", "less", "postcss", "scss", "vue", "astro"],
+  "stylelint.snippet": ["css", "less", "postcss", "scss", "vue", "astro"],
   /* ----- Prettier  */
-  "prettier.documentSelectors": [
-    "**/*.astro"
-  ],
+  "prettier.documentSelectors": ["**/*.astro"],
   // ----- Emmet
   "emmet.includeLanguages": {
     "astro": "html"
