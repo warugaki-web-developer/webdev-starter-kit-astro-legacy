@@ -1,0 +1,4 @@
+/* ----- Custom Media Query */
+@custom-media --breakpoints-mobile screen and (width < 767px);
+@custom-media --breakpoints-tablet screen and (768px <= width < 991px);
+@custom-media --breakpoints-desktop screen and (width >= 992px);

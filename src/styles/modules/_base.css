@@ -1,0 +1,26 @@
+/* ----- base styles */
+body {
+  width: 100%;
+  font-family: Lato, 'Noto Sans JP', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  font-optical-sizing: auto;
+  line-height: 1.75;
+  color: #333;
+  background-color: #fff;
+}
+
+::placeholder {
+  color: #ccc;
+}
+
+/* base container */
+.base {
+  min-height: 100svh;
+}
+
+.base-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
