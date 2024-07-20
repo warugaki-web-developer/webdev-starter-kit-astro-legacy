@@ -63,10 +63,26 @@
   /* ----- Stylelint  */
   "css.validate": false,
   "scss.validate": false,
-  "stylelint.validate": ["css", "less", "postcss", "scss", "vue", "astro"],
-  "stylelint.snippet": ["css", "less", "postcss", "scss", "vue", "astro"],
+  "stylelint.validate": [
+    "css",
+    "less",
+    "postcss",
+    "scss",
+    "vue",
+    "astro"
+  ],
+  "stylelint.snippet": [
+    "css",
+    "less",
+    "postcss",
+    "scss",
+    "vue",
+    "astro"
+  ],
   /* ----- Prettier  */
-  "prettier.documentSelectors": ["**/*.astro"],
+  "prettier.documentSelectors": [
+    "**/*.astro"
+  ],
   // ----- Emmet
   "emmet.includeLanguages": {
     "astro": "html"

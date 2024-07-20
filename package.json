@@ -11,14 +11,17 @@
     "node": "20.14.0"
   },
   "scripts": {
-    "dev": "npm-run-all -p build:postcss start",
+    "dev": "NODE_ENV=development npm-run-all -p build:postcss start",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "NODE_ENV=production npm run build:postcss && astro build",
     "build:postcss": "node _tasks/build-postcss.mjs",
     "preview": "astro preview",
     "format": "prettier --write .",
     "lint:prettier": "prettier --check .",
-    "lint:eslint": "eslint ."
+    "lint:eslint": "eslint .",
+    "lint:stylelint": "stylelint ./**/*.css",
+    "fix:eslint": "eslint --fix .",
+    "fix:stylelint": "stylelint --fix ./**/*.css"
   },
   "dependencies": {
     "astro": "^4.11.6"
@@ -48,5 +51,11 @@
     "stylelint-config-recess-order": "^5.0.1",
     "stylelint-config-standard": "^36.0.1",
     "stylelint-declaration-block-no-ignored-properties": "^2.8.0"
-  }
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not dead",
+    "not op_mini all",
+    "ios > 16"
+  ]
 }

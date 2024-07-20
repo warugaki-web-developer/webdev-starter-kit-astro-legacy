@@ -9,6 +9,9 @@ export default {
       files: ['./src/styles/modules/_custom-media-query.css'],
     }),
     postcssImport(),
+    autoprefixer({
+      cascade: false,
+    }),
     postcssPresetEnv({
       stage: 3,
       features: {
@@ -17,6 +20,5 @@ export default {
         'media-query-ranges': true,
       },
     }),
-    autoprefixer(),
   ],
 };

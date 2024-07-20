@@ -3,9 +3,41 @@ import chokidar from 'chokidar';
 import postcss from 'postcss';
 import postcssConfig from '../postcss.config.js';
 import fs from 'fs-extra';
+import stylelint from 'stylelint';
+import prettier from 'prettier';
 
 const srcDir = path.resolve('src/styles');
 const destDir = path.resolve('public/styles');
+
+const formatCSS = async (filePath) => {
+  try {
+    const css = await fs.readFile(filePath, 'utf8');
+
+    const options = await prettier.resolveConfig(filePath);
+
+    const formattedCSS = await prettier.format(css, { ...options, parser: 'css' });
+    await fs.writeFile(filePath, formattedCSS);
+  } catch (error) {
+    console.error(`Error formatting ${filePath}:`, error);
+  }
+};
+
+const lintFixCSS = async (filePath) => {
+  try {
+    const result = await stylelint.lint({
+      files: filePath,
+      fix: true,
+    });
+
+    for (const res of result.results) {
+      if (res.output) {
+        await fs.writeFile(res.source, res.output);
+      }
+    }
+  } catch (error) {
+    console.error(`Error linting and fixing ${filePath}:`, error);
+  }
+};
 
 const buildCSS = async (filePath) => {
   if (path.basename(filePath).startsWith('_')) {
@@ -13,13 +45,14 @@ const buildCSS = async (filePath) => {
   }
 
   const css = await fs.readFile(filePath, 'utf8');
-  const result = await postcss(postcssConfig.plugins).process(css, {
-    from: filePath,
-  });
+  const result = await postcss(postcssConfig.plugins).process(css, { from: filePath });
 
   const outputFilePath = path.join(destDir, path.relative(srcDir, filePath));
   await fs.ensureDir(path.dirname(outputFilePath));
   await fs.writeFile(outputFilePath, result.css);
+
+  await lintFixCSS(outputFilePath);
+  await formatCSS(outputFilePath);
 };
 
 const buildAll = async () => {
@@ -70,10 +103,7 @@ const watchFiles = () => {
     .on('add', buildCSS)
     .on('change', buildCSS)
     .on('unlink', async (filePath) => {
-      const outputFilePath = path.join(
-        destDir,
-        path.relative(srcDir, filePath),
-      );
+      const outputFilePath = path.join(destDir, path.relative(srcDir, filePath));
       await fs.remove(outputFilePath);
     });
 
@@ -87,7 +117,10 @@ const watchFiles = () => {
 
 const main = async () => {
   await buildAll();
-  watchFiles();
+
+  if (process.env.NODE_ENV !== 'production') {
+    watchFiles();
+  }
 };
 
 main().catch(console.error);

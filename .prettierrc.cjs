@@ -1,6 +1,6 @@
 /** @type {import("prettier").Config} */
 module.exports = {
-  printWidth: 80,
+  printWidth: 120,
   semi: true,
   singleQuote: false,
   jsxSingleQuote: false,
@@ -32,7 +32,6 @@ module.exports = {
       files: '*.astro',
       options: {
         parser: 'astro',
-        printWidth: 160,
       },
     },
   ],

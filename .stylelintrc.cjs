@@ -16,6 +16,18 @@ module.exports = {
   plugins: ['stylelint-declaration-block-no-ignored-properties'],
   rules: {
     'plugin/declaration-block-no-ignored-properties': true,
+    'selector-no-vendor-prefix': [
+      true,
+      {
+        ignoreSelectors: ['::placeholder', '/-moz-.*/'],
+      },
+    ],
+    'property-no-vendor-prefix': [
+      true,
+      {
+        ignoreProperties: ['appearance', 'text-size-adjust', 'transform', 'columns'],
+      },
+    ],
   },
   overrides: [
     {
